@@ -1,20 +1,35 @@
+from unicodedata import category
+
 from django.contrib import admin
+from django.utils.html import format_html
+from import_export.admin import ImportExportModelAdmin
 from apps.models import Product, Category
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'category')
-    fields = ('name', 'price', 'category')
+class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    search_fields = ('name',)
+    list_display = ('name', 'price', 'category', 'images', 'created_at')
+    fields = ('name', 'price', 'image', 'category',)
+    list_filter = ['price']  # product narxi buyicha filter qiladi yoki boshqa yozish mumkin
 
-    class Meta:
-        ...
+    def images(self, obj):
+        return format_html(f'''<a href="{obj.image.url}" target="_blank"><img src="{obj.image.url}"
+            alt="image" width="100 height="100" style="object-fit : cover;"/></a>''')
+
+
+# category ga tigishli productlarin chiqarish uchun
+class ProductStackedInline(admin.StackedInline):
+    model = Product
+    min_num = 0
+    extra = 2
+    max_num = 2
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    search_fields = ('name',)
     list_display = ('name',)
     fields = ('name',)
-
-    class Meta:
-        ...
+    # category ga tegishli productlar feilds
+    inlines = (ProductStackedInline,)
