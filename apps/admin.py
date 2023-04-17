@@ -13,7 +13,7 @@ class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     fields = ('name', 'price', 'image', 'category','description')
     list_filter = ['price']  # product narxi buyicha filter qiladi yoki boshqa yozish mumkin
     # show products
-    list_per_page = 2
+    list_per_page = 4
 
     def images(self, obj):
         return format_html(f'''<a href="{obj.image.url}" target="_blank"><img src="{obj.image.url}"
