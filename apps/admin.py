@@ -9,9 +9,11 @@ from apps.models import Product, Category
 @admin.register(Product)
 class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('name',)
-    list_display = ('name', 'price', 'category', 'images', 'created_at')
-    fields = ('name', 'price', 'image', 'category',)
+    list_display = ('name', 'price', 'category', 'images', 'description', 'created_at')
+    fields = ('name', 'price', 'image', 'category','description')
     list_filter = ['price']  # product narxi buyicha filter qiladi yoki boshqa yozish mumkin
+    # show products
+    list_per_page = 2
 
     def images(self, obj):
         return format_html(f'''<a href="{obj.image.url}" target="_blank"><img src="{obj.image.url}"
