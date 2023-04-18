@@ -36,3 +36,20 @@ class CategoryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     fields = ('name',)
     # category ga tegishli productlar feilds
     inlines = (ProductStackedInline,)
+
+
+"""
+Python Backend Ustoz PDP, [18/04/23 11:02]
+
+
+models.Tag.objects.update(name=Func(Concat('id', 'name', output_field=CharField()), function='md5'))
+models.Tag.truncate()
+
+Python Backend Ustoz PDP, [18/04/23 11:02]
+
+
+
+@classmethod
+def truncate(cls):
+    with connection.cursor() as cursor:
+        cursor.execute('TRUNCATE TABLE "{0}" CASCADE'.format(cls._meta.db_table))"""
