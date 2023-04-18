@@ -48,6 +48,9 @@ models.Tag.truncate()
 Python Backend Ustoz PDP,
 
 
+str(models.Tag.objects.order_by('?').query)
+
+'SELECT "apps_tag"."id", "apps_tag"."name" FROM "apps_tag" ORDER BY RANDOM() ASC'
 
 @classmethod
 def truncate(cls):
