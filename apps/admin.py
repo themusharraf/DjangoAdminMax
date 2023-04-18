@@ -10,9 +10,10 @@ from apps.models import Product, Category
 class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('name',)
     list_display = ('name', 'price', 'category', 'images', 'description', 'created_at')
-    fields = ('name', 'price', 'image', 'category','description')
-    list_filter = ['price']  # product narxi buyicha filter qiladi yoki boshqa yozish mumkin
-    # show products
+    fields = ('name', 'price', 'image', 'category', 'description')
+    # product narxi buyicha filter qiladi yoki boshqa yozish mumkin
+    list_filter = ['price']
+    # show products page
     list_per_page = 4
 
     def images(self, obj):
