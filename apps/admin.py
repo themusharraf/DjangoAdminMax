@@ -39,13 +39,13 @@ class CategoryAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 
 """
-Python Backend Ustoz PDP, [18/04/23 11:02]
+Python Backend Ustoz PDP,
 
 
 models.Tag.objects.update(name=Func(Concat('id', 'name', output_field=CharField()), function='md5'))
 models.Tag.truncate()
 
-Python Backend Ustoz PDP, [18/04/23 11:02]
+Python Backend Ustoz PDP,
 
 
 
